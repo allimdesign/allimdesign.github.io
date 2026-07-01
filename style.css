@@ -714,30 +714,31 @@ margin-bottom: 15px; /* 💡 지도 아래쪽에 15px 여백을 주어 글자와
         gap: 15px 10px; 
     }
 
- /* 8. 썸네일 높이 강제 고정 및 제목 칼정렬! */
+/* 8. 썸네일 높이 강제 고정 및 제목 칼정렬! */
     .portfolio-item {
         text-align: center; 
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; /* 위에서부터 차곡차곡 쌓이게 정렬 */
+        justify-content: flex-start;
     }
     
+    /* 💡 썸네일 박스의 강제 비율을 풀어서 이미지 원본 모양을 존중하도록 변경 */
     .item-image-placeholder {
         width: 100% !important;
-        aspect-ratio: 1 / 1.1 !important; 
+        aspect-ratio: auto !important; /* 🚨 기존 1 / 1.1 을 auto로 변경 (강제 고정 해제) */
         height: auto !important; 
         margin-bottom: 8px !important; 
-        background-color: #edefee !important; 
+        background-color: transparent !important; /* 🚨 이미지가 다 보이므로 회색 배경은 투명하게 처리 */
     }
     
- /* 박스 안에 들어갈 실제 이미지 스타일 */
-.portfolio-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover !important; /* 💡 contain을 cover로 변경하면 사진이 박스를 빈틈없이 꽉 채웁니다 */
-    display: block;
-    transition: transform 0.3s ease; 
-}
+    /* 💡 이미지가 박스 밖으로 잘려나가지 않도록 속성 변경 */
+    .portfolio-image {
+        width: 100%;
+        height: auto !important; /* 🚨 이미지 원본 세로 길이를 그대로 출력 */
+        object-fit: contain !important; /* 🚨 cover(가득 채우되 자름)를 contain(자르지 않고 다 보여줌)으로 변경 */
+        display: block;
+        transition: transform 0.3s ease; 
+    }
 
     /* 💡 여기가 핵심! 제목 뼈대 높이를 강제로 얼려버립니다 */
     .item-title {
